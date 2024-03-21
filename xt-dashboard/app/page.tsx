@@ -1,9 +1,22 @@
 import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
+import { useState } from "react";
 
 import { Cards } from "@/components/shared";
+import { payment } from "@/lib/action/user.action";
 
 export default function Home() {
+
+  const [paymentStatus, setPaymentstatus] = useState(false)
+
+  const email = "tomiwa@gmail.com";
+
+  payment({ email }).then((status) => {
+    setPaymentstatus(status)
+  });
+
+
+
   return (
     <main>
       <div className="mt-[120px] px-5 sm:px-10 grid grid-cols-1 md:grid-cols-3 gap-5 justify-center">
@@ -100,7 +113,7 @@ export default function Home() {
             number={3}
             cta="I'm Done"
             link="/done"
-            disabled={true}
+            disabled={paymentStatus}
             bgColor="#EB9ECC"
           />
         </div>
