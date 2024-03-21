@@ -2,12 +2,13 @@ import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-import { Cards } from "@/components/shared";
-import { payment, saveUser, onboardStatus } from "@/lib/action/user.action";
+import { Button, Cards } from "@/components/shared";
+import { payment, saveUser, onboardStatus, check90DaysPassed } from "@/lib/action/user.action";
 
 export default function Home() {
 
   const [onboard, setOnboard] = useState(false);
+  const [DaysPassed, setDaysPassed] = useState(false);
   const [paymentStatus, setPaymentstatus] = useState(false)
 
   const email = "tomiwa@gmail.com";
@@ -15,6 +16,12 @@ export default function Home() {
   useEffect(() => {
     onboardStatus(email).then((status) => {
       setOnboard(status);
+    });
+  }, []);
+
+  useEffect(() => {
+    check90DaysPassed(email).then((status) => {
+      setDaysPassed(status);
     });
   }, []);
 
@@ -63,6 +70,20 @@ export default function Home() {
         </div>
       </div>
     );
+  }
+
+  if (DaysPassed) {
+    return (
+      <div className="mt-[120px]">
+      <div className="text-center text-[#00234E] text-[32px] px-10">Congratulations! You have been selected for the 
+          3 months Software Engineering Mentorship Programme.
+      </div>
+      <div className="flex flex-col items-center justify-center h-full mt-[80px]">
+        <p className="text-[#00234E] text-[32px] pb-10 text-center">Download Certificate</p>
+        <Button cta={"Download"} onClick={handleDownload}/>
+      </div>
+      </div>
+    )
   }
 
   return (
