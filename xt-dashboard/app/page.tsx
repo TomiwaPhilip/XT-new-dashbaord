@@ -11,6 +11,8 @@ export default async function Home() {
   if (!user) return null
 
   const newemail = user.emailAddresses[0];
+  const user_firstName = user.firstName;
+  const user_lastName = user.lastName;
   
   const email = newemail?.toString() ?? "";
   
