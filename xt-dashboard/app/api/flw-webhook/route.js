@@ -1,7 +1,6 @@
 import { savePayment } from "@/lib/action/user.action";
-import { NextApiRequest } from "next";
 
-export const POST = async (req: NextApiRequest) => {
+export const POST = async (req) => {
   // Create an array to store chunks of the stream
   const chunks = [];
 
@@ -29,7 +28,7 @@ export const POST = async (req: NextApiRequest) => {
   const status = parsedData.data.status;
 
   try {
-    // Connect to the database
+    // Save payment to the database
     await savePayment({
         email: email,
         paid: status

@@ -10,7 +10,7 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  signupDate: {
+  cohortDate: {
     type: Date, // Corrected type to Date
     default: Date.now // Optional: Set default value to current date/time
   }

@@ -1,18 +1,23 @@
 export const handleSaveUser = async () => {
-    try {
-      const saveStatus = await saveUser(email);
-      if (saveStatus) {
-        window.location.reload(); // Reload the page if saveStatus is true
-      } else {
-        alert("Error saving your progress. Please try again later."); // Alert the user if there's an error
-      }
-    } catch (error) {
-      console.error("Error saving user:", error);
+  try {
+    const cohortDate = '2024-04-18';
+    const saveStatus = await saveUser(email, cohortDate);
+    if (saveStatus) {
+      window.location.reload(); // Reload the page if saveStatus is true
+    } else {
       alert("Error saving your progress. Please try again later."); // Alert the user if there's an error
     }
-  }; 
+  } catch (error) {
+    console.error("Error saving user:", error);
+    alert("Error saving your progress. Please try again later."); // Alert the user if there's an error
+  }
+};
+
 
 export  const handlePDF = () => {
+
+    path = "Software Engineering";
+    
     // Create a new jsPDF document
     var doc = new jsPDF({
       orientation: "landscape",
