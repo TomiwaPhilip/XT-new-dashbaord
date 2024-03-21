@@ -24,8 +24,9 @@ interface Props {
   number: number;
   cta: string;
   bgColor: string;
-  link: string;
+  link?: string;
   disabled?: boolean;
+  onClick?: () => void;
 }
 
 export function Cards({
@@ -36,6 +37,7 @@ export function Cards({
   link,
   bgColor,
   disabled,
+  onClick
 }: Props) {
   return (
     <div
@@ -46,7 +48,7 @@ export function Cards({
       <div className="text-[32px] text-center font-bold pb-5">{heading}</div>
       <div className="text-[18px] font-semibold pb-5">{text}</div>
       <div className="text-center pt-5">
-        <Button cta={cta} link={link} disabled={disabled} />
+        <Button cta={cta} link={link} disabled={disabled} onClick={onClick} />
       </div>
     </div>
   );

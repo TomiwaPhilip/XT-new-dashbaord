@@ -27,7 +27,18 @@ export default function Home() {
       console.error("Error saving user:", error);
       alert("Error saving your progress. Please try again later."); // Alert the user if there's an error
     }
-  };  
+  }; 
+
+  let onbaord
+  onboardStatus({ email }).then((status)) => {
+    onboard = status
+
+    if (onboard) {
+      return (
+        <div> This is some neew page</div>
+      )
+    }
+  }
 
 
   return (
@@ -125,7 +136,7 @@ export default function Home() {
             }
             number={3}
             cta="I'm Done"
-            link="/done"
+            onClick={handleSaveUser}
             disabled={paymentStatus}
             bgColor="#EB9ECC"
           />
