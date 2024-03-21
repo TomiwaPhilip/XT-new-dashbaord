@@ -1,15 +1,22 @@
 import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Cards } from "@/components/shared";
 import { payment, saveUser, onboardStatus } from "@/lib/action/user.action";
 
 export default function Home() {
 
+  const [onboard, setOnboard] = useState(false);
   const [paymentStatus, setPaymentstatus] = useState(false)
 
   const email = "tomiwa@gmail.com";
+
+  useEffect(() => {
+    onboardStatus(email).then((status) => {
+      setOnboard(status);
+    });
+  }, []);
 
   payment({ email }).then((status) => {
     setPaymentstatus(status)
@@ -29,17 +36,14 @@ export default function Home() {
     }
   }; 
 
-  let onbaord
-  onboardStatus({ email }).then((status)) => {
-    onboard = status
-
-    if (onboard) {
-      return (
-        <div> This is some neew page</div>
-      )
-    }
+  if (onboard) {
+    return (
+      <div>
+        <div>This is some new page</div>
+        {/* Add your JSX elements for the new page */}
+      </div>
+    );
   }
-
 
   return (
     <main>
