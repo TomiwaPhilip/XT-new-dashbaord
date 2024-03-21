@@ -1,6 +1,6 @@
 import { currentUser } from "@clerk/nextjs";
 
-import { Button, Cards } from "@/components/shared";
+import { Button, Cards } from "@/components/utility";
 import { payment, saveUser, onboardStatus, check90DaysPassed } from "@/lib/action/user.action";
 import { handlePDF } from "@/lib/util"
 
