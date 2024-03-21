@@ -1,9 +1,14 @@
+"use client";
+
 import { UserButton } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import jsPDF from "jspdf";
 
 import { Button, Cards } from "@/components/shared";
 import { payment, saveUser, onboardStatus, check90DaysPassed } from "@/lib/action/user.action";
+import { handleSaveUser, handlePDF } from "@/lib/util"
 
 export default function Home() {
 
@@ -11,7 +16,14 @@ export default function Home() {
   const [DaysPassed, setDaysPassed] = useState(false);
   const [paymentStatus, setPaymentstatus] = useState(false)
 
-  const email = "tomiwa@gmail.com";
+  const { user } = useUser();
+
+  const newemail = user?.primaryEmailAddress;
+  const user_firstName = user?.firstName;
+  const user_lastName = user?.lastName;
+  
+  const email = newemail?.toString() ?? "";
+  
 
   useEffect(() => {
     onboardStatus(email).then((status) => {
@@ -28,20 +40,6 @@ export default function Home() {
   payment({ email }).then((status) => {
     setPaymentstatus(status)
   });
-
-  const handleSaveUser = async () => {
-    try {
-      const saveStatus = await saveUser(email);
-      if (saveStatus) {
-        window.location.reload(); // Reload the page if saveStatus is true
-      } else {
-        alert("Error saving your progress. Please try again later."); // Alert the user if there's an error
-      }
-    } catch (error) {
-      console.error("Error saving user:", error);
-      alert("Error saving your progress. Please try again later."); // Alert the user if there's an error
-    }
-  }; 
 
   if (onboard) {
     return (
@@ -80,7 +78,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col items-center justify-center h-full mt-[80px]">
         <p className="text-[#00234E] text-[32px] pb-10 text-center">Download Certificate</p>
-        <Button cta={"Download"} onClick={handleDownload}/>
+        <Button cta={"Download"} onClick={handlePDF}/>
       </div>
       </div>
     )
