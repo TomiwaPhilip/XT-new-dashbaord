@@ -7,7 +7,7 @@ import jsPDF from "jspdf";
 
 import { Button, Cards } from "@/components/shared";
 import { payment, saveUser, onboardStatus, check90DaysPassed } from "@/lib/action/user.action";
-import { handleSaveUser, handlePDF } from "@/lib/util"
+import { handlePDF } from "@/lib/util"
 
 export default function Home() {
 
@@ -39,6 +39,21 @@ export default function Home() {
   payment({ email }).then((status) => {
     setPaymentstatus(status)
   });
+
+  const handleSaveUser = async () => {
+    try {
+      const cohortDate: Date = new Date(2024, 4, 15);      
+      const saveStatus = await saveUser(email, cohortDate);
+      if (saveStatus) {
+        window.location.reload(); // Reload the page if saveStatus is true
+      } else {
+        alert("Error saving your progress. Please try again later."); // Alert the user if there's an error
+      }
+    } catch (error) {
+      console.error("Error saving user:", error);
+      alert("Error saving your progress. Please try again later."); // Alert the user if there's an error
+    }
+  };
 
   if (onboard) {
     return (
