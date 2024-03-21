@@ -52,14 +52,17 @@ export function Cards({
   );
 }
 
+
 export function Button({
   cta,
   link,
   disabled,
+  onClick,
 }: {
   cta: string;
-  link: string;
+  link?: string;
   disabled?: boolean;
+  onClick?: () => void;
 }) {
   if (disabled) {
     return (
@@ -72,14 +75,26 @@ export function Button({
     );
   }
 
+  if (onClick) {
+    return (
+      <button
+        className="bg-white hover:bg-[#03387A] hover:text-white border-4 border-[#03387A] text-[#03387A] font-bold py-2 px-4 text-[32px] rounded-md"
+        onClick={onClick}
+      >
+        {cta}
+      </button>
+    );
+  }
+
   return (
-    <Link href={link}>
+    <Link href={link || '#'}>
       <p className="bg-white hover:bg-[#03387A] hover:text-white border-4 border-[#03387A] text-[#03387A] font-bold py-2 px-4 text-[32px] rounded-md">
         {cta}
       </p>
     </Link>
   );
 }
+
 
 export function Footer() {
   return (
