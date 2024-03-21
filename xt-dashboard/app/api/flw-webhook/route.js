@@ -30,7 +30,10 @@ export const POST = async (req: NextApiRequest) => {
 
   try {
     // Connect to the database
-    await dbConnect();
+    await savePayment({
+        email: email,
+        paid: status
+    });
 
     console.log("Payment details saved to the database.");
   } catch (error) {
