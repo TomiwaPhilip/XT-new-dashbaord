@@ -1,44 +1,25 @@
-"use client";
-
-import { useUser } from "@clerk/nextjs";
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import jsPDF from "jspdf";
+import { currentUser } from "@clerk/nextjs";
 
 import { Button, Cards } from "@/components/shared";
 import { payment, saveUser, onboardStatus, check90DaysPassed } from "@/lib/action/user.action";
 import { handlePDF } from "@/lib/util"
 
-export default function Home() {
+export default async function Home() {
 
-  const [onboard, setOnboard] = useState(false);
-  const [DaysPassed, setDaysPassed] = useState(false);
-  const [paymentStatus, setPaymentstatus] = useState(false)
+  const user = await currentUser();
 
-  const { user } = useUser();
+  if (!user) return null
 
-  const newemail = user?.primaryEmailAddress;
-  const user_firstName = user?.firstName;
-  const user_lastName = user?.lastName;
+  const newemail = user.emailAddresses[0];
   
   const email = newemail?.toString() ?? "";
   
+  const onboard = await onboardStatus(email)
 
-  useEffect(() => {
-    onboardStatus(email).then((status) => {
-      setOnboard(status);
-    });
-  }, []);
+  const DaysPassed = await check90DaysPassed(email)
 
-  useEffect(() => {
-    check90DaysPassed(email).then((status) => {
-      setDaysPassed(status);
-    });
-  }, []);
+  const paymentStatus = await payment({ email })
 
-  payment({ email }).then((status) => {
-    setPaymentstatus(status)
-  });
 
   const handleSaveUser = async () => {
     try {

@@ -1,5 +1,11 @@
+import { useUser } from "@clerk/nextjs";
+import jsPDF from "jspdf";
+
+const { user } = useUser();
 
 
+const user_firstName = user?.firstName;
+const user_lastName = user?.lastName;
 
 export  const handlePDF = () => {
 
