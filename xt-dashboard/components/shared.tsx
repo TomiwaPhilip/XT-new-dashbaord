@@ -1,12 +1,18 @@
+"use client";
+
 import { ReactNode } from "react";
 import Link from "next/link";
-import {UserButton} from "@clerk/nextjs"
+import {UserButton, useUser} from "@clerk/nextjs"
 
 export function Nav() {
+
+  const { user } = useUser();
+  const user_firstName = user?.firstName;
+
   return (
     <nav>
       <div className="fixed top-0 left-0 right-0 z-10 bg-[#00234E] flex items-center justify-between px-4 py-2">
-        <div className="text-white text-left">Welcome, Tomiwa</div>
+        <div className="text-white text-left">Welcome, `${user_firstName}`</div>
         <div className="text-white text-right">
           <UserButton />
         </div>
