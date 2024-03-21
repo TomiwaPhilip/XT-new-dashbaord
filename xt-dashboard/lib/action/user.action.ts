@@ -1,3 +1,5 @@
+"use server";
+
 import connectToDB from "../database/database";
 import PaymentStatus from "../model/paymentstatus";
 import User from "../model/user";
@@ -10,6 +12,20 @@ export async function payment({ email }: { email: string }): Promise<boolean> {
   } catch (error) {
     console.error("Error retrieving payment status:", error);
     throw new Error("Failed to retrieve payment status");
+  }
+}
+
+export async function savePayment({ email, paid }: { email: string, paid: boolean }): Promise<boolean> {
+  try {
+    await connectToDB();
+    const user = await PaymentStatus.create({ 
+      email: email,
+      paid: paid,
+    });
+    return true; // Return false if user is null or paid is false, true otherwise
+  } catch (error) {
+    console.error("Error saving payment status:", error);
+    throw new Error("Failed to save payment status");
   }
 }
 

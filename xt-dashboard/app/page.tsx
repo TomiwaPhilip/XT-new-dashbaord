@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { Cards } from "@/components/shared";
-import { payment } from "@/lib/action/user.action";
+import { payment, saveUser, onboardStatus } from "@/lib/action/user.action";
 
 export default function Home() {
 
@@ -15,6 +15,19 @@ export default function Home() {
     setPaymentstatus(status)
   });
 
+  const handleSaveUser = async () => {
+    try {
+      const saveStatus = await saveUser(email);
+      if (saveStatus) {
+        window.location.reload(); // Reload the page if saveStatus is true
+      } else {
+        alert("Error saving your progress. Please try again later."); // Alert the user if there's an error
+      }
+    } catch (error) {
+      console.error("Error saving user:", error);
+      alert("Error saving your progress. Please try again later."); // Alert the user if there's an error
+    }
+  };  
 
 
   return (
