@@ -1,10 +1,32 @@
 "use client";
 
 import { Cards } from "@/components/utility";
+import { saveUser } from "@/lib/action/user.action";
 
 
-export default function HomePage({paymentStatus, handleSaveUser}:{paymentStatus: boolean, handleSaveUser: () => void}) {
-    return (<div className="mt-[120px] px-5 sm:px-10 grid grid-cols-1 md:grid-cols-3 gap-5 justify-center">
+
+export default function HomePage({paymentStatus, email}:{paymentStatus: boolean, email: string}) {
+    
+    const handleSaveUser = () => {
+        const cohortDate = new Date(2024, 4, 15);
+      
+        saveUser(email, cohortDate)
+          .then(saveStatus => {
+            if (saveStatus) {
+              window.location.reload(); // Reload the page if saveStatus is true
+            } else {
+              alert("Error saving your progress. Please try again later."); // Alert the user if there's an error
+            }
+          })
+          .catch(error => {
+            console.error("Error saving user:", error);
+            alert("Error saving your progress. Please try again later."); // Alert the user if there's an error
+          });
+      };
+      
+
+    return (
+    <div className="mt-[120px] px-5 sm:px-10 grid grid-cols-1 md:grid-cols-3 gap-5 justify-center">
     <div className="w-full max-w-lg">
       <Cards
         heading="Assessment"
