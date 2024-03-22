@@ -10,7 +10,7 @@ export function Nav() {
   return (
     <nav>
       <div className="fixed top-0 left-0 right-0 z-10 bg-[#00234E] flex items-center justify-between px-4 py-4">
-        <div className="text-white text-left text-[28px]">Welcome, {user_firstName}</div>
+        <div className="text-white text-left text-[28px] font-bold">Welcome, {user_firstName}</div>
         <div className="text-white text-right">
           <UserButton />
         </div>
