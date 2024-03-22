@@ -7,8 +7,9 @@ import User from "../model/user";
 export async function payment({ email }: { email: string }): Promise<boolean> {
   try {
     await connectToDB();
+    console.log("the email at the server is", email)
     const user = await PaymentStatus.findOne({ email });
-    console.log(user)
+    console.log("the returned user object is",user)
     return !!user?.paid; // Return false if user is null or paid is false, true otherwise
   } catch (error) {
     console.error("Error retrieving payment status:", error);
