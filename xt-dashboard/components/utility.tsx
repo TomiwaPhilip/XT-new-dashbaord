@@ -3,44 +3,7 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 
-interface Props {
-    heading: string;
-    text: ReactNode;
-    number: number;
-    cta: string;
-    bgColor: string;
-    link?: string;
-    disabled?: boolean;
-    onClick?: () => void;
-  }
-  
-  export function Cards({
-    heading,
-    text,
-    number,
-    cta,
-    link,
-    bgColor,
-    disabled,
-    onClick
-  }: Props) {
-    return (
-      <div
-        className="text-[#1D1C20] p-5 rounded-md"
-        style={{ backgroundColor: bgColor }}
-      >
-        <div className="text-[40px] text-center font-bold pb-5">{number}</div>
-        <div className="text-[32px] text-center font-bold pb-5">{heading}</div>
-        <div className="text-[18px] font-semibold pb-5">{text}</div>
-        <div className="text-center pt-5">
-          <Button cta={cta} link={link} disabled={disabled} onClick={onClick} />
-        </div>
-      </div>
-    );
-  }
-  
-  
-  export function Button({
+export function Button({
     cta,
     link,
     disabled,
@@ -81,7 +44,42 @@ interface Props {
       </Link>
     );
   }
-  
-  
 
+
+interface Props {
+    heading: string;
+    text: ReactNode;
+    number: number;
+    cta: string;
+    bgColor: string;
+    link?: string;
+    disabled?: boolean;
+    onClick?: () => void;
+  }
+  
+  export function Cards({
+    heading,
+    text,
+    number,
+    cta,
+    link,
+    bgColor,
+    disabled,
+    onClick
+  }: Props) {
+    return (
+      <div
+        className="text-[#1D1C20] p-5 rounded-md"
+        style={{ backgroundColor: bgColor }}
+      >
+        <div className="text-[40px] text-center font-bold pb-5">{number}</div>
+        <div className="text-[32px] text-center font-bold pb-5">{heading}</div>
+        <div className="text-[18px] font-semibold pb-5">{text}</div>
+        <div className="text-center pt-5">
+          <Button cta={cta} link={link} disabled={disabled} onClick={onClick} />
+        </div>
+      </div>
+    );
+  }
+  
   
