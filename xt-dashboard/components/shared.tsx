@@ -20,7 +20,6 @@ export function Nav() {
 }
 
 
-
 export function Footer() {
   return (
     <footer className="mt-[60px]">
