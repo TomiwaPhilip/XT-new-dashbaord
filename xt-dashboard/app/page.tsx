@@ -29,7 +29,7 @@ export default async function Home() {
 
   const DaysPassed = await check90DaysPassed(email)
 
-  const paymentStatus = await payment({ email })
+  const paymentStatus = await payment(email)
 
   console.log("Onboard status is", onboard)
   console.log("DaysPassed status is", DaysPassed)

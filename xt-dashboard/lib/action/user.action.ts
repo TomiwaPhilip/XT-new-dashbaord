@@ -4,7 +4,7 @@ import connectToDB from "../database/database";
 import PaymentStatus from "../model/paymentstatus";
 import User from "../model/user";
 
-export async function payment({ email }: { email: string }): Promise<boolean> {
+export async function payment(email: string): Promise<boolean> {
   try {
     await connectToDB();
     console.log("the email at the server is", email)
