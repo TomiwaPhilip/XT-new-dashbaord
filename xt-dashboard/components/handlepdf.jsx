@@ -6,7 +6,7 @@ import jsPDF from "jspdf";
 
 const PDFGenerator = () => {
 
-    const {isSignedIn, user} = useUser()
+    const user = useUser()
 
     const user_firstName = user.firstName;
     const user_lastName = user.lastName;
