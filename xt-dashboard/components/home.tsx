@@ -25,10 +25,10 @@ export default function HomePage({paymentStatus, email}:{paymentStatus: boolean,
 
     return (
     <>
-        <div className="text-center text-[#00234E] text-[32px] px-10 font-bold">Congratulations on making it this far!
+        <div className="mt-[115px] text-center text-[#00234E] text-[32px] px-10 font-bold">Congratulations on making it this far!
         Below are the things you need to do now to reserve your seat for the programmme:
         </div>
-    <div className="mt-[120px] px-5 sm:px-10 grid grid-cols-1 md:grid-cols-3 gap-5 justify-center">
+    <div className="mt-[20px] px-5 sm:px-10 grid grid-cols-1 md:grid-cols-3 gap-5 justify-center">
     <div className="w-full max-w-lg">
       <Cards
         heading="Assessment"
