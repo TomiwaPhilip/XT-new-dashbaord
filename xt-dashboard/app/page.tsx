@@ -17,6 +17,8 @@ export default async function Home() {
   
   const email = newemail?.toString() ?? "";
 
+  console.log(email)
+
   if (!email) {
     throw new Error("Email not present")
   }
