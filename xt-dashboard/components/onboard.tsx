@@ -7,7 +7,7 @@ export default function Onboard() {
         <div className="flex flex-col items-center justify-center h-full mt-[80px]">
           <div className="rounded-md text-[#131216] bg-[#4BA3C5] px-5 py-8">
             <p className="text-[18px] font-bold text-center mb-4">Below is what you need to do now!</p>
-            <ol className="list-decimal px-5">
+            <ol className="list-decimal px-5 font-semibold">
               <li className="mb-2">
                 Join our discord community by clicking <a href=""> here </a>. This is your virtual workingspace for the mentorship programme.
               </li>
