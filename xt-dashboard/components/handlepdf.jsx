@@ -6,7 +6,11 @@ import jsPDF from "jspdf";
 
 const PDFGenerator = () => {
 
-    const user = useUser()
+    const {isSignedIn, user} = useUser()
+
+    if(!isSignedIn){
+        throw new Error("User is not authorized!")
+    }
 
     const user_firstName = user.firstName;
     const user_lastName = user.lastName;
