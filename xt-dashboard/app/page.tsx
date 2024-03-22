@@ -35,6 +35,16 @@ export default async function Home() {
   console.log("DaysPassed status is", DaysPassed)
   console.log("Payment status is", paymentStatus)
 
+  if (DaysPassed && onboard && paymentStatus) {
+    return (
+      <div className="">
+      <Nav />
+      <DaysPass />
+    </div>
+    )
+  }
+
+
   if (onboard && paymentStatus) {
     return (
       <div className="">
@@ -42,13 +52,6 @@ export default async function Home() {
         <Onboard />
       </div>   
     );
-  } else if (DaysPassed && onboard && paymentStatus) {
-    return (
-      <div className="">
-      <Nav />
-      <DaysPass />
-    </div>
-    )
   }
 
   return (
