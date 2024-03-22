@@ -50,6 +50,7 @@ export async function onboardStatus(email: string): Promise<boolean> {
   try {
     await connectToDB();
     const user = await User.findOne({ email });
+    console.log("the onboarding user object is", user)
     return !!user?.onboarded;
   } catch (error) {
     console.error("Error retrieving onboarding status:", error);
@@ -65,6 +66,8 @@ export async function check90DaysPassed(email: string): Promise<boolean> {
     
     // Retrieve the user from the database
     const user = await User.findOne({ email });
+
+    console.log("the user object for the cohort date is", user)
     
     // If user or cohort date is missing, return false
     if (!user || !user.cohortDate) {
