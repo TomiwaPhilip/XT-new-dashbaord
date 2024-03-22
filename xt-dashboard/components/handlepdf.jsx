@@ -62,7 +62,7 @@ const PDFGenerator = () => {
 
   // Render a button to trigger PDF generation
   return (
-    <button className='bg-[#00234E] text-white font-bold rounded-md p-3' onClick={handlePDF}>Download Certificate</button>
+    <button className='bg-[#00234E] text-white font-bold rounded-md p-3 pt-[20px]' onClick={handlePDF}>Download Certificate</button>
   );
 };
 
