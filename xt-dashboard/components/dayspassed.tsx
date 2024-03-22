@@ -1,7 +1,6 @@
 "use client";
 
-import { Button } from "./utility";
-import { handlePDF } from "@/lib/util"
+import PDFGenerator from "@/components/handlepdf";
 
 export default function DaysPass() {
     return (
@@ -11,7 +10,7 @@ export default function DaysPass() {
         </div>
         <div className="flex flex-col items-center justify-center h-full mt-[80px]">
           <p className="text-[#00234E] text-[32px] pb-10 text-center">Download Certificate</p>
-          <Button cta={"Download"} onClick={handlePDF} />
+          <PDFGenerator />
         </div>
         </div>
     )
