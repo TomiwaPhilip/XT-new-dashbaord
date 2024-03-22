@@ -11,6 +11,8 @@ const PDFGenerator = () => {
     const user_firstName = user.firstName;
     const user_lastName = user.lastName;
 
+    console.log(user_firstName, user_lastName)
+
     const handlePDF = () => {
 
     const path = "Software Engineering";
