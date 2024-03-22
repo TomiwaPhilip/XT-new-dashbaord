@@ -15,6 +15,10 @@ export default async function Home() {
   const newemail = user.emailAddresses[0];
   
   const email = newemail?.toString() ?? "";
+
+  if (!email) {
+    throw new Error("Email not present")
+  }
   
   const onboard = await onboardStatus(email)
 
@@ -22,6 +26,9 @@ export default async function Home() {
 
   const paymentStatus = await payment({ email })
 
+  console.log("Onboard status is", onboard)
+  console.log("DaysPassed status is", DaysPassed)
+  console.log("Payment status is", paymentStatus)
 
   if (onboard && paymentStatus) {
     return (
