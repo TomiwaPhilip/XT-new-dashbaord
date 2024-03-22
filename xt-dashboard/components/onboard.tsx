@@ -1,13 +1,13 @@
 export default function Onboard() {
     return (
         <div className="mt-[120px]">
-        <div className="text-center text-[#00234E] text-[32px] px-10">Congratulations! You have been selected for the 
+        <div className="text-center text-[#00234E] text-[32px] px-10 font-bold">Congratulations! You have been selected for the 
             3 months Software Engineering Mentorship Programme.
         </div>
         <div className="flex flex-col items-center justify-center h-full mt-[80px]">
           <div className="rounded-md text-[#131216] bg-[#4BA3C5] px-5 py-8">
             <p className="text-[18px] font-bold text-center mb-4">Below is what you need to do now!</p>
-            <ol className="list-decimal">
+            <ol className="list-decimal px-5">
               <li className="mb-2">
                 Join our discord community by clicking <a href=""> here </a>. This is your virtual workingspace for the mentorship programme.
               </li>

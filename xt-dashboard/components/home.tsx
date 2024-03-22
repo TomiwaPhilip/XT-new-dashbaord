@@ -3,8 +3,6 @@
 import { Cards } from "@/components/utility";
 import { saveUser } from "@/lib/action/user.action";
 
-
-
 export default function HomePage({paymentStatus, email}:{paymentStatus: boolean, email: string}) {
     
     const handleSaveUser = () => {
