@@ -23,7 +23,7 @@ export default async function Home() {
   const paymentStatus = await payment({ email })
 
 
-  if (onboard) {
+  if (onboard && paymentStatus) {
     return (
       <Onboard />
     );
