@@ -54,11 +54,6 @@ const PDFGenerator = () => {
       `${user_firstName} ${user_lastName}`,
     );
 
-    // Add text to the smaller rectangle
-    doc.setFontSize(16);
-    doc.setTextColor(0, 0, 0); // Black
-    doc.text(smallRect.x + 5, smallRect.y + 5, `${path}`);
-
     // Save the PDF document
     doc.save("certificate.pdf");
   };
