@@ -1,8 +1,15 @@
+"use client";
+import { useUser } from "@clerk/nextjs";
 import jsPDF from "jspdf";
 
-export  const handlePDF = () => {
+export const handlePDF = () => {
 
-    path = "Software Engineering";
+    const user = useUser()
+
+    const user_firstName = user.firstName;
+    const user_lastName = user.lastName;
+
+    const path = "Software Engineering";
     
     // Create a new jsPDF document
     var doc = new jsPDF({
