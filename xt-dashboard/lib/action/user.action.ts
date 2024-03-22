@@ -8,6 +8,7 @@ export async function payment({ email }: { email: string }): Promise<boolean> {
   try {
     await connectToDB();
     const user = await PaymentStatus.findOne({ email });
+    console.log(user)
     return !!user?.paid; // Return false if user is null or paid is false, true otherwise
   } catch (error) {
     console.error("Error retrieving payment status:", error);
