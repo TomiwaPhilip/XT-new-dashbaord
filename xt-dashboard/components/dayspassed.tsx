@@ -4,7 +4,7 @@ import PDFGenerator from "@/components/handlepdf";
 
 export default function DaysPass() {
     return (
-        <div className="mt-[120px]">
+        <div className="mt-[120px] text-center">
         <div className="text-center text-[#00234E] text-[32px] px-10 font-bold">Congratulations! You have been selected for the 
             3 months Software Engineering Mentorship Programme.
         </div>
