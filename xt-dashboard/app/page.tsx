@@ -17,7 +17,7 @@ export default async function Home() {
 
   console.log(newemail)
   
-  const email = newemail?.toString() ?? "";
+  const email = newemail.emailAddress;
 
   console.log(email)
 
