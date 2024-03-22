@@ -44,7 +44,7 @@ export default async function Home() {
 
   return (
     <main>
-      <HomePage paymentStatus={paymentStatus} email={email}  />
+      <HomePage paymentStatus={!paymentStatus} email={email}  />
     </main>
   );
 }

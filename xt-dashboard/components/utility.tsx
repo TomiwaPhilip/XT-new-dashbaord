@@ -25,7 +25,7 @@ export function Button({
       );
     }
   
-    if (onClick || disabled) {
+    if (onClick) {
       return (
         <button
           className="bg-white hover:bg-[#03387A] hover:text-white border-4 border-[#03387A] text-[#03387A] font-bold py-2 px-4 text-[32px] rounded-md"
