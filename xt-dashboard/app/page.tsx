@@ -31,10 +31,7 @@ export default async function Home() {
 
   const paymentStatus = await payment(email)
 
-  console.log("Onboard status is", onboard)
-  console.log("DaysPassed status is", DaysPassed)
-  console.log("Payment status is", paymentStatus)
-
+  
   if (DaysPassed && onboard && paymentStatus) {
     return (
       <div className="">

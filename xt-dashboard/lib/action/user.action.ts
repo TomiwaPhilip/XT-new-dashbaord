@@ -7,9 +7,7 @@ import User from "../model/user";
 export async function payment(email: string): Promise<boolean> {
   try {
     await connectToDB();
-    console.log("the email at the server is", email)
     const user = await PaymentStatus.findOne({ email });
-    console.log("the returned user object is",user)
     return !!user?.paid; // Return false if user is null or paid is false, true otherwise
   } catch (error) {
     console.error("Error retrieving payment status:", error);
@@ -50,7 +48,6 @@ export async function onboardStatus(email: string): Promise<boolean> {
   try {
     await connectToDB();
     const user = await User.findOne({ email });
-    console.log("the onboarding user object is", user)
     return !!user?.onboarded;
   } catch (error) {
     console.error("Error retrieving onboarding status:", error);
@@ -66,8 +63,6 @@ export async function check90DaysPassed(email: string): Promise<boolean> {
     
     // Retrieve the user from the database
     const user = await User.findOne({ email });
-
-    console.log("the user object for the cohort date is", user)
     
     // If user or cohort date is missing, return false
     if (!user || !user.cohortDate) {
