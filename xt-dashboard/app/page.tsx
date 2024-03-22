@@ -3,6 +3,7 @@ import { currentUser } from "@clerk/nextjs";
 import Onboard from "@/components/onboard";
 import DaysPass from "@/components/dayspassed";
 import HomePage from "@/components/home";
+import { Nav } from "@/components/shared";
 import { payment, onboardStatus, check90DaysPassed } from "@/lib/action/user.action";
 
 
@@ -32,18 +33,25 @@ export default async function Home() {
 
   if (onboard && paymentStatus) {
     return (
-      <Onboard />
+      <div className="">
+        <Nav />
+        <Onboard />
+      </div>   
     );
   }
 
   if (DaysPassed) {
     return (
+      <div className="">
+      <Nav />
       <DaysPass />
+    </div>
     )
   }
 
   return (
     <main>
+      <Nav />
       <HomePage paymentStatus={!paymentStatus} email={email}  />
     </main>
   );

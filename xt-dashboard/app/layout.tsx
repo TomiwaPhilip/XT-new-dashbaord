@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
-import { Nav, Footer } from "@/components/shared";
+import { Footer } from "@/components/shared";
 
 export const metadata: Metadata = {
   title: "My Dashboard",
@@ -18,7 +18,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body>
-          <Nav />
+          
           {children}
           <Footer />
         </body>
