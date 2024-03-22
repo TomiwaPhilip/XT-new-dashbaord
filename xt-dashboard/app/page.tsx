@@ -44,7 +44,7 @@ export default async function Home() {
     );
   }
 
-  if (DaysPassed) {
+  if (DaysPassed && onboard && paymentStatus) {
     return (
       <div className="">
       <Nav />
