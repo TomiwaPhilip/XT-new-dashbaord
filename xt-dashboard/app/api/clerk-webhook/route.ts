@@ -52,18 +52,27 @@ export async function POST(req: Request) {
     })
   }
 
-  const { first_name, email_addresses } = payload.data;
+  const { first_name, last_name, email_addresses } = payload.data;
   const firstName = first_name;
+  const lastName = last_name;
   const emailAddress = email_addresses[0].email_address;
  
   console.log(`Sending email to ${firstName} at ${emailAddress}`);
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Acme <onboarding@xperiencedtekie.pro>',
+      from: 'Tomiwa Philip <onboarding@xperiencedtekie.pro>',
       to: [emailAddress],
-      subject: "Hello world",
+      subject: "Welcome to Xperienced Tekie, ",
       react: EmailTemplate({ firstName: firstName }) as React.ReactElement,
+    });
+
+    resend.contacts.create({
+      email: emailAddress,
+      firstName: firstName,
+      lastName: lastName,
+      unsubscribed: false,
+      audienceId: 'cce369aa-abda-4095-9b43-c9694e53a27d',
     });
 
     if (error) {
