@@ -1,6 +1,11 @@
-import { Webhook } from 'svix'
-import { headers } from 'next/headers'
-import { WebhookEvent } from '@clerk/nextjs/server'
+import { Webhook } from 'svix';
+import { headers } from 'next/headers';
+import { WebhookEvent } from '@clerk/nextjs/server';
+import { EmailTemplate } from '@/components/email-templates';
+import { Resend } from 'resend';
+import * as React from 'react';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
  
 export async function POST(req: Request) {
  
@@ -19,7 +24,7 @@ export async function POST(req: Request) {
  
   // If there are no headers, error out
   if (!svix_id || !svix_timestamp || !svix_signature) {
-    return new Response('Error occured -- no svix headers', {
+    return new Response('Error occurred -- no svix headers', {
       status: 400
     })
   }
@@ -42,18 +47,31 @@ export async function POST(req: Request) {
     }) as WebhookEvent
   } catch (err) {
     console.error('Error verifying webhook:', err);
-    return new Response('Error occured', {
+    return new Response('Error occurred', {
       status: 400
     })
   }
+
+  const { first_name, email_addresses } = payload.data;
+  const firstName = first_name;
+  const emailAddress = email_addresses[0].email_address;
  
-  // Get the ID and type
-  const { id } = evt.data;
-  const eventType = evt.type;
- 
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
-  console.log('Webhook body:', body)
- 
-  return new Response('', { status: 200 })
+  console.log(`Sending email to ${firstName} at ${emailAddress}`);
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: 'Acme <onboarding@xperiencedtekie.pro>',
+      to: [emailAddress],
+      subject: "Hello world",
+      react: EmailTemplate({ firstName: firstName }) as React.ReactElement,
+    });
+
+    if (error) {
+      return Response.json({ error });
+    }
+
+    return Response.json({ data });
+  } catch (error) {
+    return Response.json({ error });
+  }
 }
- 
