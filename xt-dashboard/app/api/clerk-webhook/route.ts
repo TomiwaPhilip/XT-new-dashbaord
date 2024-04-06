@@ -63,11 +63,11 @@ export async function POST(req: Request) {
     const { data, error } = await resend.emails.send({
       from: 'Tomiwa-Philip <onboarding@xperiencedtekie.pro>',
       to: [emailAddress],
-      subject: "Welcome to Xperienced Tekie, ",
+      subject: "Welcome to Xperienced Tekie, 🎉",
       react: EmailTemplate({ firstName: firstName }) as React.ReactElement,
     });
 
-    resend.contacts.create({
+   await resend.contacts.create({
       email: emailAddress,
       firstName: firstName,
       lastName: lastName,

@@ -34,7 +34,7 @@ export default function HomePage({paymentStatus, email}:{paymentStatus: boolean,
         heading="Assessment"
         text={
           <p>
-            Take your 20 minutes Assessment by clicking the button below.
+            Take your 10 minutes Assessment by clicking the button below.
             You will be redirected to a Google Form, make sure you answer
             all the questions. Use the email address you used on
             registration. Still in doubts? {""}
@@ -58,7 +58,7 @@ export default function HomePage({paymentStatus, email}:{paymentStatus: boolean,
         number={1}
         cta="Start Now"
         bgColor="#E7CCDC"
-        link="/assessment"
+        link="https://forms.gle/SivjTBbRPEKYkNrN7/assessment"
       />
     </div>
     <div className="w-full max-w-lg">
@@ -89,7 +89,7 @@ export default function HomePage({paymentStatus, email}:{paymentStatus: boolean,
         }
         number={2}
         cta="Pay Now"
-        link="/payment"
+        link="https://flutterwave.com/pay/sjp2hulwnv08"
         bgColor="#E8B2D2"
       />
     </div>
