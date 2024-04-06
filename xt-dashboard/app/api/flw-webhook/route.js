@@ -44,7 +44,7 @@ export const POST = async (req) => {
     return new Response("Error processing webhook", { status: 500 });
   }
 
-  if(status="successful"){
+  if(status==="successful"){
     try {
       const { data, error } = await resend.emails.send({
         from: 'Xperienced-Tekie <onboarding@xperiencedtekie.pro>',
