@@ -82,7 +82,7 @@ export async function verifyPayment({
           from: "Xperienced-Tekie<onboarding@xperiencedtekie.pro>",
           to: [email],
           subject: "Congratulations: Seat Reserved! 🎊",
-          react: EmailTemplate2(),
+          react: EmailTemplate2() as React.ReactElement,
         });
       } catch (error) {
         return false;
