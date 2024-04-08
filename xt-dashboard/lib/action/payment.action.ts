@@ -3,7 +3,7 @@
 import got from "got";
 import { redirect } from "next/navigation";
 import { Resend } from "resend";
-import Flutterwave from "flutterwave-node-v3";
+const Flutterwave = require("flutterwave-node-v3");
 
 import { EmailTemplate2 } from "@/components/email-templates";
 import { savePayment } from "@/lib/action/user.action";
@@ -13,12 +13,16 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function getPaymentLink({
   tx_ref,
   email,
+  currency,
+  amount,
 }: {
   tx_ref: string;
   email: string;
+  currency: string;
+  amount: string;
 }) {
-  console.log("At the server", tx_ref, email);
-  let response;
+  console.log("At the server", tx_ref, email, currency);
+  let response: any;
   try {
     response = await got
       .post("https://api.flutterwave.com/v3/payments", {
@@ -27,9 +31,9 @@ export async function getPaymentLink({
         },
         json: {
           tx_ref: tx_ref,
-          amount: "100",
-          currency: "NGN",
-          redirect_url: "https://dash.xperiencedtekie.pro/verify",
+          amount: amount,
+          currency: currency,
+          redirect_url: "https://https://f59lq3-3000.csb.app/verify",
           customer: {
             email: email,
           },
@@ -39,7 +43,7 @@ export async function getPaymentLink({
         },
       })
       .json();
-  } catch (err) {
+  } catch (err: any) {
     console.log(err.code);
     console.log(response.status);
   } finally {
@@ -65,7 +69,7 @@ export async function verifyPayment({
     console.log(status, tx_ref, transaction_id, "At the serever");
     const response = await flw.Transaction.verify({ id: transaction_id });
 
-    if (response.data.status === "successful" && response.data.amount === 100) {
+    if (response.data.status === "successful") {
       // Success! Confirm the customer's paymentresponse.data.status
       const email = response.data.customer.email;
       const status = response.status;
@@ -74,7 +78,7 @@ export async function verifyPayment({
 
       try {
         await resend.emails.send({
-          from: "Xperienced-Tekie <onboarding@xperiencedtekie.pro>",
+          from: "Xperienced-Tekie<onboarding@xperiencedtekie.pro>",
           to: [email],
           subject: "Congratulations: Seat Reserved! 🎊",
           react: EmailTemplate2(),

@@ -98,13 +98,20 @@ export const Modal = ({ visible, onClose, email, tx_ref }) => {
           &times;
         </span>
         <p className="text-center text-xl font-bold">Choose your currency:</p>
-        <div className="flex-col items-center justify-center space-x-5 gap-5 mt-10">
+        <div className="flex-col items-center justify-center mt-10 gap-5">
           <Button
             cta="Pay in NGN"
-            link="https://flutterwave.com/pay/sjp2hulwnv08"
-            onClick={() => getPaymentLink({ tx_ref, email })}
+            onClick={() =>
+              getPaymentLink({ tx_ref, email, currency: "NGN", amount: "100" })
+            }
           />
-          <Button cta="Pay in USD" link="" />
+          <br />
+          <Button
+            cta="Pay in USD"
+            onClick={() =>
+              getPaymentLink({ tx_ref, email, currency: "USD", amount: "6.3" })
+            }
+          />
         </div>
       </div>
     </div>
