@@ -13,7 +13,10 @@ export default function Onboard() {
           <ol className="list-decimal px-5 font-semibold">
             <li className="mb-2">
               Join our WhatsApp community by clicking{" "}
-              <a href="https://chat.whatsapp.com/KOoaMK8bCtcKjGisxTq0dl">
+              <a
+                href="https://chat.whatsapp.com/KOoaMK8bCtcKjGisxTq0dl"
+                className="text-red-500"
+              >
                 {" "}
                 here{" "}
               </a>
@@ -29,8 +32,14 @@ export default function Onboard() {
             </li>
             <li>
               Do a shoutout to us on X
-              <a href="https://twitter.com/XTekie43088"> here. </a> Tag us and
-              we will comment on your post!
+              <a
+                href="https://twitter.com/XTekie43088"
+                className="text-red-500"
+              >
+                {" "}
+                here.{" "}
+              </a>{" "}
+              Tag us and we will comment on your post!
             </li>
           </ol>
         </div>
