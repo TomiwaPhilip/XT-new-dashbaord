@@ -18,12 +18,6 @@ export default function Verify() {
     : null;
   console.log(status, tx_ref, transaction_id);
 
-  interface Params {
-    status: string;
-    tx_ref: string;
-    transaction_id: string;
-  }
-
   useEffect(() => {
     async function checkPayment() {
       console.log("Running the function!");
@@ -32,7 +26,7 @@ export default function Verify() {
         const verify = await verifyPayment({
           status: status,
           tx_ref: tx_ref,
-          transaction_id: transaction_id,
+          transaction_id: transaction_id?,
         });
         if (verify) {
           setVerifyResult("Your payment has been verified and confirmed!");
