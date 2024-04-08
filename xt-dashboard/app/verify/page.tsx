@@ -13,9 +13,7 @@ export default function Verify() {
   const status = searchParams.get("status") as string;
   const tx_ref = searchParams.get("tx_ref") as string;
   const transaction_idString = searchParams.get("transaction_id");
-  const transaction_id = transaction_idString
-    ? parseInt(transaction_idString)
-    : null;
+  const transaction_id = parseInt(transaction_idString);
   console.log(status, tx_ref, transaction_id);
 
   useEffect(() => {
@@ -26,7 +24,7 @@ export default function Verify() {
         const verify = await verifyPayment({
           status: status,
           tx_ref: tx_ref,
-          transaction_id: transaction_id?,
+          transaction_id: transaction_id,
         });
         if (verify) {
           setVerifyResult("Your payment has been verified and confirmed!");
