@@ -28,7 +28,7 @@ export default function Onboard() {
               Start Preparing by setting up your dev tools!
             </li>
             <li>
-              Do a shoutout to use on X
+              Do a shoutout to us on X
               <a href="https://twitter.com/XTekie43088"> here. </a> Tag us and
               we will comment on your post!
             </li>
