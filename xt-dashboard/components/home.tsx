@@ -23,7 +23,7 @@ export default function HomePage({
   };
 
   const handleSaveUser = () => {
-    const cohortDate = new Date(2024, 4, 15);
+    const cohortDate = new Date(2024, 4, 22);
 
     saveUser(email, cohortDate)
       .then((saveStatus) => {
