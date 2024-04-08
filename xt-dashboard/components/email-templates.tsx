@@ -47,7 +47,7 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   </div>
 );
 
-export const EmailTemplate2: React.FC = () => (
+export const EmailTemplate2: React.FC<Readonly<EmailTemplateProps>> = () => (
   <div>
     <h1>Congratulations!</h1>
     <p>
