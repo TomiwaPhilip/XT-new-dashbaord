@@ -47,9 +47,11 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   </div>
 );
 
-export const EmailTemplate2: React.FC = () => (
+export const EmailTemplate2: React.FC<Readonly<EmailTemplateProps>> = ({
+  firstName,
+}) => (
   <div>
-    <h1>Congratulations!</h1>
+    <h1>Congratulations, {firstName}! </h1>
     <p>
       You have successfully secured your seat for the next cohort of Software
       Development Mentorship Programme starting by April 15, 2024{" "}
