@@ -12,7 +12,10 @@ export default function Verify() {
 
   const status = searchParams.get("status") as string;
   const tx_ref = searchParams.get("tx_ref") as string;
-  const transaction_id = searchParams.get("transaction_id") as number;
+  const transaction_idString = searchParams.get("transaction_id");
+  const transaction_id = transaction_idString
+    ? parseInt(transaction_idString)
+    : null;
   console.log(status, tx_ref, transaction_id);
 
   interface Params {
