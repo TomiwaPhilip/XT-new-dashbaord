@@ -4,57 +4,58 @@ import Onboard from "@/components/onboard";
 import DaysPass from "@/components/dayspassed";
 import HomePage from "@/components/home";
 import { Nav } from "@/components/shared";
-import { payment, onboardStatus, check90DaysPassed } from "@/lib/action/user.action";
-
+import {
+  payment,
+  onboardStatus,
+  check90DaysPassed,
+} from "@/lib/action/user.action";
 
 export default async function Home() {
-
   const user = await currentUser();
 
-  if (!user) return null
+  if (!user) return null;
 
   const newemail = user.emailAddresses[0];
+  const userId = user.id;
 
-  console.log(newemail)
-  
+  console.log(newemail);
+
   const email = newemail.emailAddress;
 
-  console.log(email)
+  console.log(email);
 
   if (!email) {
-    throw new Error("Email not present")
+    throw new Error("Email not present");
   }
-  
-  const onboard = await onboardStatus(email)
 
-  const DaysPassed = await check90DaysPassed(email)
+  const onboard = await onboardStatus(email);
 
-  const paymentStatus = await payment(email)
+  const DaysPassed = await check90DaysPassed(email);
 
-  
+  const paymentStatus = await payment(email);
+
   if (DaysPassed && onboard && paymentStatus) {
     return (
       <div className="">
-      <Nav />
-      <DaysPass />
-    </div>
-    )
+        <Nav />
+        <DaysPass />
+      </div>
+    );
   }
-
 
   if (onboard && paymentStatus) {
     return (
       <div className="">
         <Nav />
         <Onboard />
-      </div>   
+      </div>
     );
   }
 
   return (
     <main>
       <Nav />
-      <HomePage paymentStatus={!paymentStatus} email={email}  />
+      <HomePage paymentStatus={!paymentStatus} email={email} userId={userId} />
     </main>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
+import Head from "next/head";
 import "./globals.css";
 
 import { Footer } from "@/components/shared";
@@ -18,8 +19,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <Head>
+          <script src="https://checkout.flutterwave.com/v3.js"></script>
+        </Head>
         <body>
-          
           {children}
           <Footer />
           <Analytics />
