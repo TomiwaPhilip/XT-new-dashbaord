@@ -8,15 +8,11 @@ import { saveUser } from "@/lib/action/user.action";
 export default function HomePage({
   paymentStatus,
   email,
-  userId,
 }: {
   paymentStatus: boolean;
   email: string;
-  userId: string;
 }) {
   const [modalVisible, setModalVisible] = useState(false); // State to manage modal visibility
-
-  console.log(userId, email);
 
   const setModal = () => {
     setModalVisible(true); // Function to set modal visibility to true
@@ -148,12 +144,7 @@ export default function HomePage({
           />
         </div>
       </div>
-      <Modal
-        visible={modalVisible}
-        onClose={closeModal}
-        tx_ref={userId}
-        email={email}
-      />{" "}
+      <Modal visible={modalVisible} onClose={closeModal} email={email} />{" "}
       {/* Render the Modal component */}
     </>
   );

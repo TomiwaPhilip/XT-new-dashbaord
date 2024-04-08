@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { verifyPayment } from "@/lib/action/payment.action";
 import { RiLoader4Line } from "react-icons/ri";
 
@@ -21,32 +21,32 @@ export default function Verify() {
     transaction_id: string;
   }
 
-  async function checkPayment() {
-    console.log("Running the fucntion!");
+  useEffect(() => {
+    async function checkPayment() {
+      console.log("Running the function!");
 
-    try {
-      const verify = await verifyPayment({
-        status: status,
-        tx_ref: tx_ref,
-        transaction_id: transaction_id,
-      });
-      if (verify) {
-        setVerifyResult("Your payment has been verified and confirmed!");
-        setLoading(false);
-        window.location.href = "/";
-      } else {
-        setVerifyResult("Your payment was not successful. Please try again.");
-        setLoading(false);
-        window.location.href = "/";
+      try {
+        const verify = await verifyPayment({
+          status: status,
+          tx_ref: tx_ref,
+          transaction_id: transaction_id,
+        });
+        if (verify) {
+          setVerifyResult("Your payment has been verified and confirmed!");
+          setLoading(false);
+          window.location.href = "/";
+        } else {
+          setVerifyResult("Your payment was not successful. Please try again.");
+          setLoading(false);
+          window.location.href = "/";
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
-  }
 
-  if (typeof window !== "undefined") {
-    window.addEventListener("load", checkPayment);
-  }
+    checkPayment(); // Call checkPayment directly when component mounts
+  }, []);
 
   return (
     <main>

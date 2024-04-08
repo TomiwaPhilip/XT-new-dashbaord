@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import Link from "next/link";
+import { randomBytes } from "crypto";
 
 import { getPaymentLink } from "@/lib/action/payment.action";
 
@@ -83,8 +84,26 @@ export function Cards({
   );
 }
 
-export const Modal = ({ visible, onClose, email, tx_ref }) => {
-  console.log(email, tx_ref);
+export const Modal = ({
+  visible,
+  onClose,
+  email,
+}: {
+  visible: any;
+  onClose: any;
+  email: any;
+}) => {
+  function generateRandomHexString(): string {
+    // Generate 32 random bytes
+    const randomBytesBuffer = randomBytes(32);
+
+    // Convert the buffer to a hexadecimal string
+    const randomHexString = randomBytesBuffer.toString("hex");
+
+    return randomHexString;
+  }
+  const tx_ref = generateRandomHexString();
+
   return (
     <div
       className={`fixed inset-0 ${visible ? "" : "hidden"} flex items-center justify-center z-50`}

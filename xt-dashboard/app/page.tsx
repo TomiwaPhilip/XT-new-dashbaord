@@ -16,7 +16,6 @@ export default async function Home() {
   if (!user) return null;
 
   const newemail = user.emailAddresses[0];
-  const userId = user.id;
 
   console.log(newemail);
 
@@ -55,7 +54,7 @@ export default async function Home() {
   return (
     <main>
       <Nav />
-      <HomePage paymentStatus={!paymentStatus} email={email} userId={userId} />
+      <HomePage paymentStatus={!paymentStatus} email={email} />
     </main>
   );
 }

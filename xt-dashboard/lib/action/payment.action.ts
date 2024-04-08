@@ -21,7 +21,6 @@ export async function getPaymentLink({
   currency: string;
   amount: string;
 }) {
-  console.log("At the server", tx_ref, email, currency);
   let response: any;
   try {
     response = await got
@@ -33,7 +32,7 @@ export async function getPaymentLink({
           tx_ref: tx_ref,
           amount: amount,
           currency: currency,
-          redirect_url: "https://https://f59lq3-3000.csb.app/verify",
+          redirect_url: "https://f59lq3-3000.csb.app/verify",
           customer: {
             email: email,
           },
@@ -65,16 +64,18 @@ export async function verifyPayment({
     process.env.FLW_PUBLIC_KEY,
     process.env.FLW_SECRET_KEY,
   );
-  if (status === "successful") {
-    console.log(status, tx_ref, transaction_id, "At the serever");
+  if (status === "successful" || status === "completed") {
+    console.log(status, tx_ref, transaction_id, "At the server");
     const response = await flw.Transaction.verify({ id: transaction_id });
+    console.log(response);
 
-    if (response.data.status === "successful") {
+    if (
+      response.data.status === "successful" ||
+      response.data.status === "completed"
+    ) {
       // Success! Confirm the customer's paymentresponse.data.status
       const email = response.data.customer.email;
       const status = response.status;
-      console.log(response, "Inside the if");
-      console.log(email, status);
 
       try {
         await resend.emails.send({
