@@ -32,7 +32,7 @@ export async function getPaymentLink({
           tx_ref: tx_ref,
           amount: amount,
           currency: currency,
-          redirect_url: "https://f59lq3-3000.csb.app/verify",
+          redirect_url: "https://dash.xperiencedtekie.pro/verify",
           customer: {
             email: email,
           },
