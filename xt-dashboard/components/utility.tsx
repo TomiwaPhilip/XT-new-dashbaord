@@ -121,7 +121,12 @@ export const Modal = ({
           <Button
             cta="Pay in NGN"
             onClick={() =>
-              getPaymentLink({ tx_ref, email, currency: "NGN", amount: "100" })
+              getPaymentLink({
+                tx_ref,
+                email,
+                currency: "NGN",
+                amount: "7860.82",
+              })
             }
           />
           <br />
