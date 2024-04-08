@@ -15,10 +15,16 @@ export async function payment(email: string): Promise<boolean> {
   }
 }
 
-export async function savePayment({ email, paid }: { email: string, paid: boolean }): Promise<boolean> {
+export async function savePayment({
+  email,
+  paid,
+}: {
+  email: string;
+  paid: boolean;
+}): Promise<boolean> {
   try {
     await connectToDB();
-    const user = await PaymentStatus.create({ 
+    const user = await PaymentStatus.create({
       email: email,
       paid: paid,
     });
@@ -29,7 +35,10 @@ export async function savePayment({ email, paid }: { email: string, paid: boolea
   }
 }
 
-export async function saveUser(email: string, cohortDate: Date): Promise<boolean> {
+export async function saveUser(
+  email: string,
+  cohortDate: Date,
+): Promise<boolean> {
   try {
     await connectToDB();
     await User.create({
@@ -55,27 +64,26 @@ export async function onboardStatus(email: string): Promise<boolean> {
   }
 }
 
-
 // Function to check if 90 days have passed since cohort date
 export async function check90DaysPassed(email: string): Promise<boolean> {
   try {
     await connectToDB();
-    
+
     // Retrieve the user from the database
     const user = await User.findOne({ email });
-    
+
     // If user or cohort date is missing, return false
     if (!user || !user.cohortDate) {
       throw new Error("User not found or cohort date missing");
     }
-    
+
     // Calculate the date 90 days after cohort
     const ninetyDaysAfterCohort = new Date(user.cohortDate);
     ninetyDaysAfterCohort.setDate(ninetyDaysAfterCohort.getDate() + 90);
-    
+
     // Get the current date
     const currentDate = new Date();
-    
+
     // Return true if current date is greater than or equal to 90 days after cohort date
     return currentDate >= ninetyDaysAfterCohort;
   } catch (error) {

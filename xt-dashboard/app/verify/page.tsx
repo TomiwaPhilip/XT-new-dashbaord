@@ -44,7 +44,9 @@ export default function Verify() {
     }
   }
 
-  window.addEventListener("load", checkPayment);
+  if (typeof window !== "undefined") {
+    window.addEventListener("load", checkPayment);
+  }
 
   return (
     <main>

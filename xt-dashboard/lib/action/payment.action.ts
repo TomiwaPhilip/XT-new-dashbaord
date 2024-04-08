@@ -64,38 +64,35 @@ export async function verifyPayment({
   if (status === "successful") {
     console.log(status, tx_ref, transaction_id, "At the serever");
     const response = await flw.Transaction.verify({ id: transaction_id });
-    console.log(response, "inside status");
+
     if (response.data.status === "successful" && response.data.amount === 100) {
       // Success! Confirm the customer's paymentresponse.data.status
-      email = response.data.customer.email;
-      const status = response.data.success;
-      console.log(response);
+      const email = response.data.customer.email;
+      const status = response.status;
+      console.log(response, "Inside the if");
+      console.log(email, status);
 
       try {
-        const { data, error } = await resend.emails.send({
+        await resend.emails.send({
           from: "Xperienced-Tekie <onboarding@xperiencedtekie.pro>",
           to: [email],
           subject: "Congratulations: Seat Reserved! 🎊",
-          react: EmailTemplate2({ firstName: firstName }),
+          react: EmailTemplate2(),
         });
-
-        if (error) {
-          return Response.json({ error });
-        }
-        return Response.json({ data });
       } catch (error) {
-        return Response.json({ error });
+        return false;
       }
 
       try {
         // Save payment to the database
         await savePayment({
           email: email,
-          paid: response.data.status,
+          paid: true,
         });
         console.log("Payment details saved to the database.");
       } catch (error) {
         console.error("Error savind payment details to DB", error);
+        return false;
       }
 
       return true;
