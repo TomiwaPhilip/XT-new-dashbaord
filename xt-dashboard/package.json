@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.29.9",
+    "@clerk/nextjs": "^4.31.5",
     "@vercel/analytics": "^1.2.2",
     "flutterwave-node-v3": "^1.1.9",
     "got": "^14.2.1",
